@@ -1,0 +1,45 @@
+{
+    "name": "shopping-site",
+    "version": "1.0.0",
+    "description": "Assignment for Target",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "clean": "rimraf dist",
+        "deploy": "node dist/index.js",
+        "start": "nodemon --config \"./nodemon.json\"/ clean --parallel watch:build watch:server --print-label",
+        "watch:build": "tsc --watch",
+        "watch:server": "nodemon './dist/index.js' --watch './dist'",
+        "lint": "./node_modules/.bin/eslint 'src/**/*.ts' --fix",
+        "tsc": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mandalrajdeep/shopping-site.git"
+    },
+    "author": "Soma Halder",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mandalrajdeep/shopping-site/issues"
+    },
+    "homepage": "https://github.com/mandalrajdeep/shopping-site#readme",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "@typescript-eslint/parser": "^2.33.0",
+        "dotenv": "^8.2.0",
+        "mocha": "^8.0.1",
+        "nodemon": "^2.0.4",
+        "ts-node": "^8.10.2",
+        "typescript": "^3.9.5",
+        "eslint": "^5.16.0",
+        "eslint-config-standard": "^14.1.1",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-node": "^10.0.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.1"
+    }
+}
