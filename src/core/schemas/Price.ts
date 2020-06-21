@@ -4,7 +4,10 @@ import IPriceDocument from '../interfaces/Price';
 class PriceSchema {
     static get schema() {
         const PriceSchema = new Schema({
-            product: Types.ObjectId,
+            product: {
+                type: Types.ObjectId,
+                ref: 'Products',
+            },
             price: String,
             currency: String,
             updatedAt: {
@@ -16,5 +19,5 @@ class PriceSchema {
         return PriceSchema;
     }
 }
-const schema = model<IPriceDocument>('Configurations', PriceSchema.schema);
+const schema = model<IPriceDocument>('Prices', PriceSchema.schema);
 export default schema;

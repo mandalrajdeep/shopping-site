@@ -1,32 +1,26 @@
 import { IPrice } from '../interfaces/Price';
 
-class OpenOwner {
+class ProductModel {
     private model;
 
     constructor(model: IPrice) {
-        this.model.productId = model.product;
-        this.model.name = model.product.name;
-        this.model.brand = model.product.brand;
-        this.model.details = model.product.details;
-        this.model.price = model.price;
-        this.model.currency = model.currency;
-        this.model.updatedAt = model.updatedAt;
+        this.model = model;
     }
 
     get productId() {
-        return this.model.productId;
+        return this.model.product._id;
     }
 
     get name() {
-        return this.model.name;
+        return this.model.product.name;
     }
 
     get brand() {
-        return this.model.brand;
+        return this.model.product.brand;
     }
 
     get details() {
-        return this.model.details;
+        return this.model.product.details;
     }
 
     get price() {
@@ -38,6 +32,7 @@ class OpenOwner {
     }
 
     set price(args) {
+        console.log(args);
         const { price, currency } = args;
         this.model.price = price;
         this.model.currency = currency;
@@ -50,4 +45,4 @@ class OpenOwner {
     }
 }
 
-export default OpenOwner;
+export default ProductModel;

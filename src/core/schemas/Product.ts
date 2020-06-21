@@ -17,5 +17,5 @@ class ProductSchema {
         return ProductSchema;
     }
 }
-const schema = model<IProductDocument>('Configurations', ProductSchema.schema);
+const schema = model<IProductDocument>('Products', ProductSchema.schema);
 export default schema;

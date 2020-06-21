@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
-import IPriceDocument, { IPrice } from '../core/data/interfaces/Price';
-import IProductDocument, { IProduct } from '../core/data/interfaces/Product';
-import PriceSchema from '../core/data/schemas/Price';
-import ProductSchema from '../core/data/schemas/Product';
-import ProductModel from '../core/data/models/Product';
-import Repository from '../core/data/services/Repository';
+import { Types } from 'mongoose';
+import IPriceDocument, { IPrice } from '../core/interfaces/Price';
+import IProductDocument, { IProduct } from '../core/interfaces/Product';
+import PriceSchema from '../core/schemas/Price';
+import ProductSchema from '../core/schemas/Product';
+import ProductModel from '../core/models/Product';
+import Repository from '../core/services/Repository';
 
 class ProductController {
     private repository: {
@@ -27,9 +28,10 @@ class ProductController {
             const product = await this.repository.product.findOne({
                 id: req.params.id,
             });
+            console.log(product['_id']);
             const content = new ProductModel(
                 await this.repository.price.findOne({
-                    product: product['_id'],
+                    product: Types.ObjectId(product['_id']),
                 }),
             );
             res.status(200).send({
@@ -51,7 +53,7 @@ class ProductController {
             });
             const content = new ProductModel(
                 await this.repository.price.findOne({
-                    product: product['_id'],
+                    product: Types.ObjectId(product['_id']),
                 }),
             );
             res.status(200).send({
@@ -72,12 +74,13 @@ class ProductController {
 
     public async updatePrice(req: Request, res: Response) {
         try {
+            console.log(req.params.id, req.body);
             const product = await this.repository.product.findOne({
                 id: req.params.id,
             });
             const content = new ProductModel(
                 await this.repository.price.findOne({
-                    product: product['_id'],
+                    product: Types.ObjectId(product['_id']),
                 }),
             );
             content.price = {

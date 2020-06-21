@@ -14,12 +14,12 @@ class Redsky {
 
     private init() {
         const products = JSON.parse(fs.readFileSync(this.file).toString());
-        for (const product in products) {
+        products.forEach((product) => {
             const key = product['product']['item']['tcin'];
             if (key && !this.map[key]) {
-                this.map[key] = product[key]['product'];
+                this.map[key] = product['product'];
             }
-        }
+        });
     }
 
     public async fetch(key: string) {
