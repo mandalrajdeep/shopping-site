@@ -9,9 +9,10 @@ class Redsky {
     constructor() {
         this.file = path.join(__dirname, '../../redsky.json');
         this.map = {};
+        this.init();
     }
 
-    public async init() {
+    private init() {
         const products = JSON.parse(fs.readFileSync(this.file).toString());
         for (const product in products) {
             const key = product['product']['item']['tcin'];
@@ -28,3 +29,5 @@ class Redsky {
         return this.map[key];
     }
 }
+
+export default Redsky;
