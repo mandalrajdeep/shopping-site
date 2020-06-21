@@ -9,7 +9,6 @@ class RedskyController {
     public async getProduct(req: Request, res: Response) {
         try {
             const product = await this.source.fetch(req.params.id);
-            console.log(product);
             if (Object.keys(this.source).length > 0 || product) {
                 res.status(200).send({
                     success: true,

@@ -24,6 +24,7 @@ class App {
         this.app.listen(this.port, () => {
             console.log('The app is running on port ', this.port);
         });
+        return this.app;
     }
 }
 

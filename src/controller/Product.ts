@@ -28,7 +28,6 @@ class ProductController {
             const product = await this.repository.product.findOne({
                 id: req.params.id,
             });
-            console.log(product['_id']);
             const content = new ProductModel(
                 await this.repository.price.findOne({
                     product: Types.ObjectId(product['_id']),
@@ -74,7 +73,9 @@ class ProductController {
 
     public async updatePrice(req: Request, res: Response) {
         try {
-            console.log(req.params.id, req.body);
+            if (!req.body.price) {
+                throw Error('Price Not Specified');
+            }
             const product = await this.repository.product.findOne({
                 id: req.params.id,
             });
@@ -99,7 +100,7 @@ class ProductController {
         } catch (err) {
             res.status(200).send({
                 success: false,
-                message: 'Product Fetch Failed',
+                message: err.message,
             });
         }
     }
