@@ -15,7 +15,7 @@ class BaseRoutes {
     public get routes() {
         const app = express();
         app.use('/products', this.products.routes.bind(this.products));
-        app.use('/orgs', this.redsky.routes.bind(this.redsky));
+        app.use('/redsky', this.redsky.routes.bind(this.redsky));
         return app;
     }
 }
